@@ -1,0 +1,11 @@
+--login siswa
+SELECT id_siswa, nama_siswa, email_siswa, id_kelas FROM tbl_siswa WHERE id_siswa ='$id' AND password_siswa='$pass';
+
+--login guru
+SELECT id_guru, nama_guru, hak_akses FROM tbl_guru WHERE id_guru ='$id' AND password_guru='$pass';
+
+--absen siwa
+SELECT * FROM tbl_absen INNER JOIN tbl_siswa ON tbl_siswa.id_siswa = tbl_absen.id_siswa WHERE DATE(tbl_absen.waktu_absensi) = DATE(NOW()) AND tbl_siswa.id_kelas = 'X1';
+
+--cek absen yang udah di validasi
+SELECT * FROM tbl_absen WHERE id_absen IN (SELECT id_absen FROM tbl_validasi);
